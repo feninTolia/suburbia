@@ -11,7 +11,6 @@ const Footer = async () => {
   const boardTextureUrls = settings.data.footer_skateboards
     .map((item) => asImageSrc(item.skateboard, { h: 600 }))
     .filter((url): url is string => Boolean(url));
-  console.log(boardTextureUrls);
 
   return (
     <footer className="bg-texture bg-zinc-900 text-white overflow-hidden">
