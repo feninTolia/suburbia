@@ -1,5 +1,6 @@
 import { useGLTF, useTexture } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
+import gsap from 'gsap';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTF } from 'three-stdlib';
@@ -151,7 +152,7 @@ export function Skateboard({
   };
 
   useFrame(() => {
-    if (!wheelRefs.current && !constantWheelSpinning) return;
+    if (!wheelRefs.current || !constantWheelSpinning) return;
 
     for (const wheel of wheelRefs.current) {
       wheel.rotation.x += 0.2;
@@ -159,11 +160,15 @@ export function Skateboard({
   });
 
   useEffect(() => {
-    if (!wheelRefs.current && constantWheelSpinning) return;
+    if (!wheelRefs.current || constantWheelSpinning) return;
     for (const wheel of wheelRefs.current) {
-      // GSAP
+      gsap.to(wheel.rotation, {
+        x: '-=30',
+        duration: 2.5,
+        ease: 'circ.out',
+      });
     }
-  }, [constantWheelSpinning]);
+  }, [constantWheelSpinning, wheelTextureUrl]);
 
   return (
     <group dispose={null}>
