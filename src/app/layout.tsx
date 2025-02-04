@@ -1,5 +1,3 @@
-import Footer from '@/components/Footer';
-import { Header } from '@/components/Header';
 import { SVGFilters } from '@/components/SVGFilters';
 import type { Metadata } from 'next';
 import { Bowlby_One_SC, DM_Mono } from 'next/font/google';
@@ -34,11 +32,7 @@ export default function RootLayout({
       <body
         className={`${bowlby.variable} ${dmMono.variable} antialiased font-mono font-medium text-zinc-800 min-w-80`}
       >
-        <main>
-          <Header />
-          {children}
-          <Footer />
-        </main>
+        <main>{children}</main>
         <SVGFilters />
       </body>
     </html>
